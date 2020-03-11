@@ -1,0 +1,55 @@
+<?php
+$op = $_GET['op'];
+
+if ($op == "calcular") {
+
+// VALORES
+$a = $_POST['a']; 
+$b = $_POST['b']; 
+$c = $_POST['c'];
+
+// DESCOBRINDO DELTA
+$delta = ($b * $b) - ((4 * $a) * ($c));
+
+// CALCULANDO O VALOR DE X
+$x1 = (-$b + sqrt($delta)) / (2 * $a);
+$x2 = (-$b - sqrt($delta)) / (2 * $a);
+
+}
+?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Equação de Segundo Grau</title>
+</head>
+
+<body>
+<form action="equacao.php?op=calcular" method="post">
+        <label>
+        <input name="a" type="text" size="1" />
+        </label>
+        x<sup>2</sup>
+  <input name="b" type="text" size="1" />
+        x
+        
+  <input name="c" type="text" size="1" />
+        = 0 <br />
+        <br />
+        <label>
+        <input type="submit" name="Submit" value="Calcular" />
+        </label>
+    </form>
+ <br /><br />
+<?php
+if ($x1 == 'NAN' and $x2 == 'NAN') {
+   echo 'Impossível calcular o valor, delta negativo ('.$delta.')!';
+} else {
+
+   echo '<b>x1</b> = ' . $x1 . '<br />';
+   echo '<b>x2</b> = ' . $x2;
+}
+?>
+</body>
+</html>
